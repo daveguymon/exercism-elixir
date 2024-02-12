@@ -12,7 +12,7 @@ defmodule BoutiqueInventory do
   end
 
   def increase_quantity(item, count) do
-    %{item | quantity_by_size: Enum.into(Enum.map(item.quantity_by_size, fn {size, qty} -> {size, qty + count} end), %{})}
+    %{item | quantity_by_size: Enum.into(item.quantity_by_size, %{}, fn {size, qty} -> {size, qty + count} end)}
   end
 
   def total_quantity(item) do
