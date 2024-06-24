@@ -19,6 +19,21 @@ defmodule Queens do
   """
   @spec to_string(Queens.t()) :: String.t()
   def to_string(queens) do
+    white = Map.get(queens, :white)
+    black = Map.get(queens, :black)
+
+    for col <- 0..7, row <- 0..7 do
+      cond do
+        {col, row} == white ->
+          "W"
+        {col, row} == black -> 
+          "B"
+        true -> "_"
+      end
+    end
+    |> Enum.chunk_every(8)
+    |> Enum.map(fn row -> Enum.join(row, " ") end)
+    |> Enum.join("\n")
   end
 
   @doc """
